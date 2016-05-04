@@ -1,0 +1,49 @@
+<%= form_for(@gist) do |f| %>
+  <% if @gist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gist.errors.count, "error") %> prohibited this gist from being saved:</h2>
+
+      <ul>
+      <% @gist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :description, placeholder: 'Gist description', class: 'form-control' %>
+  </div>
+    <%= f.nested_fields_for :file_lists do |file_list| %>
+        <%= file_list.remove_nested_fields_link 'Remove', class: 'btn btn-danger', role: 'button' %>
+        <div class="field">
+          <%= file_list.text_field :name, placeholder: 'file name', class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= file_list.text_area :content %>
+          <div id="editor"/>
+        </div>
+    <% end %>
+    <%= f.add_nested_fields_link :file_lists, 'Add file', class: 'btn btn-primary', role: 'button' %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+  var editor = ace.edit("editor");
+  var textarea = $("textarea[id^='gist_file_lists_attributes']");
+  textarea.hide();
+  editor.getSession().setValue(textarea.val());
+  editor.getSession().on('change', function(){
+    textarea.val(editor.getSession().getValue());
+  });
+
+  $(function() {
+    $('.add_nested_fields_link').on('click', function(){
+      //var editor = ace.edit("editor");
+    });
+  });
+</script>

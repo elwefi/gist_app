@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing File Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Gist</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @file_lists.each do |file_list| %>
+      <tr>
+        <td><%= file_list.name %></td>
+        <td><%= file_list.content %></td>
+        <td><%= file_list.gist %></td>
+        <td><%= link_to 'Show', file_list %></td>
+        <td><%= link_to 'Edit', edit_file_list_path(file_list) %></td>
+        <td><%= link_to 'Destroy', file_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New File list', new_file_list_path %>
