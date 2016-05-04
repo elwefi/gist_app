@@ -1,0 +1,10 @@
+<h3>
+  <%= link_to gist.file_lists.first.name, gist %>
+</h3>
+<%= link_to gist do %>
+    <div class="editor_list"> <%= gist.file_lists.first.content%> </div>
+<% end %>
+<script src="http://ace.ajax.org/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  addAceToTextFileList("editor_list");
+</script>

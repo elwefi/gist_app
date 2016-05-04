@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :comments
-  resources :file_lists
-  resources :gists
+  resources :gists do
+    collection do
+      get :search
+    end
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

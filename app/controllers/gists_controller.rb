@@ -7,6 +7,10 @@ class GistsController < ApplicationController
     @gists = Gist.all
   end
 
+  def search
+    @gists = Gist.by_file_content(params[:q])
+  end
+
   # GET /gists/1
   # GET /gists/1.json
   def show

@@ -1,19 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @gist.description %>
-</p>
 
-<p>
-  <strong>Is public:</strong>
-  <%= @gist.is_public %>
-</p>
+<% @gist.file_lists.each do |file| %>
+    <h3>
+      <%= link_to @gist.file_lists.first.name, @gist %>
+    </h3>
+    <div class="editor"> <%= file.content%> </div>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @gist.user %>
-</p>
-
-<%= link_to 'Edit', edit_gist_path(@gist) %> |
-<%= link_to 'Back', gists_path %>
+<script src="http://ace.ajax.org/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  addAceToTextFileList("editor");
+</script>
