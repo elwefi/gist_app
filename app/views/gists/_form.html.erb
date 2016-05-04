@@ -31,9 +31,10 @@
     <%= f.submit %>
   </div>
 <% end %>
-
+<script src="http://ace.ajax.org/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
   var editor = ace.edit("editor");
+  editor.getSession().setMode("ace/mode/ruby");
   var textarea = $("textarea[id^='gist_file_lists_attributes']");
   textarea.hide();
   editor.getSession().setValue(textarea.val());
